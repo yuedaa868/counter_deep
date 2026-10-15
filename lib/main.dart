@@ -28,7 +28,8 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+        // 改造一：种子色由 deepPurple 换成 teal，整站配色随之改变。
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -56,15 +57,38 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  /// 改造一：每次点击 FAB 的增量，可在 AppBar 的按钮里选择 1 / 2 / 5。
+  int _step = 1;
+
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      // 改造一：增量由固定 +1 改为 +_step（默认 1，即“每点 +1”的旧行为）。
+      _counter += _step;
     });
+  }
+
+  /// 改造一：打开底部弹层，让用户选择步长（1 / 2 / 5）。
+  Future<void> _chooseStep() async {
+    final selected = await showModalBottomSheet<int>(
+      context: context,
+      builder: (sheetContext) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const ListTile(dense: true, title: Text('选择每次点击的步长')),
+            for (final value in const [1, 2, 5])
+              ListTile(
+                title: Text('步长 $value'),
+                trailing: value == _step ? const Icon(Icons.check) : null,
+                onTap: () => Navigator.pop(sheetContext, value),
+              ),
+          ],
+        ),
+      ),
+    );
+    // await 之后 State 可能已被销毁，必须先检查 mounted 再 setState。
+    if (!mounted || selected == null) return;
+    setState(() => _step = selected);
   }
 
   @override
@@ -84,6 +108,14 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+        // 改造一：AppBar 右上角加入口，点开弹层选步长。
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.tune),
+            tooltip: '设置步长',
+            onPressed: _chooseStep,
+          ),
+        ],
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -109,12 +141,14 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            // 改造一：把当前步长显示出来，方便验证。
+            Text('步长：+$_step / 次'),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        tooltip: 'Increment by $_step',
         child: const Icon(Icons.add),
       ),
     );
