@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 930" width="1280" height="930" font-family="Consolas, 'Microsoft YaHei', monospace">
+  <defs>
+    <marker id="arw" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 z" fill="#78909c"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1280" height="930" fill="#fbfbf6"/>
+
+  <text x="40" y="34" font-size="24" font-weight="bold" fill="#263238">counter_deep — Widget 树（标注 Stateless / Stateful）</text>
+  <text x="40" y="58" font-size="13" fill="#607d8b">来源：lib/main.dart（flutter create 默认计数器模板）｜由 _MyHomePageState.build() 返回的子树即下方 Scaffold 分支</text>
+
+  <!-- ===== connectors (drawn first, under boxes) ===== -->
+  <g stroke="#78909c" stroke-width="1.6" fill="none" marker-end="url(#arw)">
+    <path d="M640,100 L640,138"/>
+    <path d="M640,196 L640,218 L480,218 L480,238"/>
+    <path d="M580,268 L658,268"/>
+    <path d="M790,296 L790,316 L640,316 L640,338"/>
+    <path d="M640,396 L640,420"/>
+    <path d="M240,420 L1095,420"/>
+    <path d="M240,420 L240,438"/>
+    <path d="M640,420 L640,438"/>
+    <path d="M1095,420 L1095,438"/>
+    <path d="M240,496 L240,534"/>
+    <path d="M640,496 L640,534"/>
+    <path d="M1095,496 L1095,534"/>
+    <path d="M640,592 L640,614"/>
+    <path d="M450,614 L800,614"/>
+    <path d="M450,614 L450,630"/>
+    <path d="M800,614 L800,630"/>
+  </g>
+
+  <!-- edge labels -->
+  <text x="596" y="252" font-size="12" fill="#ef6c00" text-anchor="end">createState()</text>
+  <text x="706" y="310" font-size="12" fill="#6a1b9a" text-anchor="start">build() 返回</text>
+  <text x="212" y="414" font-size="12" fill="#37474f" text-anchor="end">appBar:</text>
+  <text x="612" y="414" font-size="12" fill="#37474f" text-anchor="end">body:</text>
+  <text x="955" y="414" font-size="12" fill="#37474f" text-anchor="start">floatingActionButton:</text>
+
+  <!-- ===== boxes: StatefulWidget (orange) ===== -->
+  <g>
+    <rect x="540" y="140" width="200" height="56" rx="10" fill="#fff3e0" stroke="#ef6c00" stroke-width="2"/>
+    <text x="640" y="164" font-size="15" font-weight="bold" fill="#e65100" text-anchor="middle">MaterialApp</text>
+    <text x="640" y="183" font-size="12" fill="#bf360c" text-anchor="middle">StatefulWidget（框架内部）</text>
+  </g>
+  <g>
+    <rect x="380" y="240" width="200" height="56" rx="10" fill="#fff3e0" stroke="#ef6c00" stroke-width="2"/>
+    <text x="480" y="264" font-size="15" font-weight="bold" fill="#e65100" text-anchor="middle">MyHomePage</text>
+    <text x="480" y="283" font-size="12" fill="#bf360c" text-anchor="middle">StatefulWidget（本文件）</text>
+  </g>
+  <g>
+    <rect x="540" y="340" width="200" height="56" rx="10" fill="#fff3e0" stroke="#ef6c00" stroke-width="2"/>
+    <text x="640" y="364" font-size="15" font-weight="bold" fill="#e65100" text-anchor="middle">Scaffold</text>
+    <text x="640" y="383" font-size="12" fill="#bf360c" text-anchor="middle">StatefulWidget（框架内部）</text>
+  </g>
+  <g>
+    <rect x="130" y="440" width="220" height="56" rx="10" fill="#fff3e0" stroke="#ef6c00" stroke-width="2"/>
+    <text x="240" y="464" font-size="15" font-weight="bold" fill="#e65100" text-anchor="middle">AppBar</text>
+    <text x="240" y="483" font-size="12" fill="#bf360c" text-anchor="middle">StatefulWidget</text>
+  </g>
+
+  <!-- ===== State object (purple, dashed: NOT a widget) ===== -->
+  <g>
+    <rect x="660" y="240" width="260" height="56" rx="10" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="790" y="264" font-size="15" font-weight="bold" fill="#4a148c" text-anchor="middle">_MyHomePageState</text>
+    <text x="790" y="283" font-size="12" fill="#4a148c" text-anchor="middle">State&lt;MyHomePage&gt; 持有 _counter</text>
+  </g>
+
+  <!-- ===== StatelessWidget (green) ===== -->
+  <g>
+    <rect x="540" y="44" width="200" height="56" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+    <text x="640" y="68" font-size="15" font-weight="bold" fill="#1b5e20" text-anchor="middle">MyApp</text>
+    <text x="640" y="87" font-size="12" fill="#2e7d32" text-anchor="middle">StatelessWidget（根，runApp）</text>
+  </g>
+  <g>
+    <rect x="130" y="536" width="220" height="56" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+    <text x="240" y="560" font-size="13" font-weight="bold" fill="#1b5e20" text-anchor="middle">Text(widget.title)</text>
+    <text x="240" y="579" font-size="12" fill="#2e7d32" text-anchor="middle">StatelessWidget</text>
+  </g>
+  <g>
+    <rect x="950" y="440" width="290" height="56" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+    <text x="1095" y="464" font-size="15" font-weight="bold" fill="#1b5e20" text-anchor="middle">FloatingActionButton</text>
+    <text x="1095" y="483" font-size="12" fill="#2e7d32" text-anchor="middle">StatelessWidget</text>
+  </g>
+  <g>
+    <rect x="995" y="536" width="200" height="56" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+    <text x="1095" y="560" font-size="14" font-weight="bold" fill="#1b5e20" text-anchor="middle">Icon(Icons.add)</text>
+    <text x="1095" y="579" font-size="12" fill="#2e7d32" text-anchor="middle">StatelessWidget</text>
+  </g>
+  <g>
+    <rect x="260" y="632" width="380" height="56" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+    <text x="450" y="656" font-size="13" font-weight="bold" fill="#1b5e20" text-anchor="middle">Text('You have pushed …')  const</text>
+    <text x="450" y="675" font-size="12" fill="#2e7d32" text-anchor="middle">StatelessWidget — 说明文字（内容不变）</text>
+  </g>
+  <g>
+    <rect x="700" y="632" width="200" height="56" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+    <text x="800" y="656" font-size="14" font-weight="bold" fill="#1b5e20" text-anchor="middle">Text('$_counter')</text>
+    <text x="800" y="675" font-size="12" fill="#2e7d32" text-anchor="middle">StatelessWidget — 随值重建</text>
+  </g>
+
+  <!-- ===== RenderObjectWidget (blue-grey): neither Stateless nor Stateful ===== -->
+  <g>
+    <rect x="530" y="440" width="220" height="56" rx="10" fill="#eceff1" stroke="#546e7a" stroke-width="2"/>
+    <text x="640" y="464" font-size="15" font-weight="bold" fill="#263238" text-anchor="middle">Center</text>
+    <text x="640" y="483" font-size="11" fill="#455a64" text-anchor="middle">RenderObjectWidget（无 State）</text>
+  </g>
+  <g>
+    <rect x="530" y="536" width="220" height="56" rx="10" fill="#eceff1" stroke="#546e7a" stroke-width="2"/>
+    <text x="640" y="560" font-size="15" font-weight="bold" fill="#263238" text-anchor="middle">Column</text>
+    <text x="640" y="579" font-size="11" fill="#455a64" text-anchor="middle">RenderObjectWidget（无 State）</text>
+  </g>
+
+  <!-- ===== note: setState flow ===== -->
+  <g>
+    <rect x="880" y="620" width="380" height="118" rx="10" fill="#fffde7" stroke="#f9a825" stroke-width="2"/>
+    <text x="896" y="644" font-size="13" font-weight="bold" fill="#f57f17">点 FAB 后发生了什么？</text>
+    <text x="896" y="666" font-size="11.5" fill="#5d4037">FAB 的 onPressed → _incrementCounter()</text>
+    <text x="896" y="686" font-size="11.5" fill="#5d4037">→ setState() 标记本 State 为 dirty</text>
+    <text x="896" y="706" font-size="11.5" fill="#5d4037">→ 调度下一帧 → build() 重新执行</text>
+    <text x="896" y="726" font-size="11.5" fill="#5d4037">→ 新 Text('$_counter') 替换旧的 → 屏幕刷新</text>
+  </g>
+
+  <!-- ===== legend ===== -->
+  <rect x="40" y="776" width="1220" height="112" rx="10" fill="#ffffff" stroke="#b0bec5" stroke-width="1.5"/>
+  <text x="60" y="802" font-size="14" font-weight="bold" fill="#37474f">图例</text>
+  <rect x="60" y="816" width="22" height="18" rx="4" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="92" y="831" font-size="12.5" fill="#37474f">StatelessWidget：无 State，build() 只依赖入参</text>
+  <rect x="60" y="846" width="22" height="18" rx="4" fill="#fff3e0" stroke="#ef6c00" stroke-width="2"/>
+  <text x="92" y="861" font-size="12.5" fill="#37474f">StatefulWidget：createState() 产生一个 State，自身可 rebuild</text>
+  <rect x="560" y="816" width="22" height="18" rx="4" fill="#eceff1" stroke="#546e7a" stroke-width="2"/>
+  <text x="592" y="831" font-size="12.5" fill="#37474f">RenderObjectWidget：直接建 RenderObject，既非 Stateless 也非 Stateful</text>
+  <rect x="560" y="846" width="22" height="18" rx="4" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="592" y="861" font-size="12.5" fill="#37474f">State&lt;T&gt; 对象：不是 Widget，虚线框表示（它才是真正改状态的地方）</text>
+  <text x="60" y="880" font-size="12" fill="#78909c">注：MaterialApp/Scaffold/AppBar 的 Stateful 是框架内部实现；本图只展开本文件手写的 widget，框架内部的 Navigator / Overlay 等子树未画出。</text>
+</svg>
