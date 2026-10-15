@@ -51,7 +51,10 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() {
+    print('[lifecycle] createState()：框架第一次需要 State 时调用，返回 _MyHomePageState');
+    return _MyHomePageState();
+  }
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -59,6 +62,38 @@ class _MyHomePageState extends State<MyHomePage> {
 
   /// 改造一：每次点击 FAB 的增量，可在 AppBar 的按钮里选择 1 / 2 / 5。
   int _step = 1;
+
+  // ---------- 改造二：生命周期日志（每个钩子一行 print） ----------
+
+  @override
+  void initState() {
+    super.initState();
+    print('[lifecycle] initState()：State 插入树中，只调用一次（适合做一次性初始化）');
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print('[lifecycle] didChangeDependencies()：所依赖的 InheritedWidget 变化后调用');
+  }
+
+  @override
+  void didUpdateWidget(covariant MyHomePage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print('[lifecycle] didUpdateWidget()：父级传下新配置，title 由 ${oldWidget.title} 变为 ${widget.title}');
+  }
+
+  @override
+  void deactivate() {
+    super.deactivate();
+    print('[lifecycle] deactivate()：State 暂时离开树（随后可能被重新插入，也可能进入 dispose）');
+  }
+
+  @override
+  void dispose() {
+    print('[lifecycle] dispose()：State 永久销毁，在这里释放资源');
+    super.dispose();
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -93,6 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    print('[lifecycle] build()：重建中，当前 _counter=$_counter, _step=$_step');
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -116,6 +152,15 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: _chooseStep,
           ),
         ],
+        // 改造二：用 assets 里的自定义图片作 AppBar 背景（BoxFit.cover 自动裁剪）。
+        flexibleSpace: Image.asset(
+          'assets/images/appbar_bg.jpg',
+          fit: BoxFit.cover,
+          // 压暗一点，保证白色标题文字在图片上依然清晰。
+          color: Colors.black38,
+          colorBlendMode: BlendMode.darken,
+        ),
+        foregroundColor: Colors.white,
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
