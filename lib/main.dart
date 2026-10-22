@@ -187,7 +187,13 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             // 改造一：把当前步长显示出来，方便验证。
-            Text('步长：+$_step / 次'),
+            // 主题取用：文字样式取自 Theme，颜色取自 teal 种子色生成的主色。
+            Text(
+              '步长：+$_step / 次',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+            ),
           ],
         ),
       ),

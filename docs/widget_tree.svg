@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 930" width="1280" height="930" font-family="Consolas, 'Microsoft YaHei', monospace">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1150" width="1280" height="1150" font-family="Consolas, 'Microsoft YaHei', monospace">
   <defs>
     <marker id="arw" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
       <path d="M0,0 L8,3 L0,6 z" fill="#78909c"/>
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="1280" height="930" fill="#fbfbf6"/>
+  <rect x="0" y="0" width="1280" height="1150" fill="#fbfbf6"/>
 
   <text x="40" y="34" font-size="24" font-weight="bold" fill="#263238">counter_deep — Widget 树（标注 Stateless / Stateful）</text>
-  <text x="40" y="58" font-size="13" fill="#607d8b">来源：lib/main.dart（flutter create 默认计数器模板）｜由 _MyHomePageState.build() 返回的子树即下方 Scaffold 分支</text>
+  <text x="40" y="58" font-size="13" fill="#607d8b">来源：lib/main.dart（flutter create 默认模板 + 改造一/二）｜由 _MyHomePageState.build() 返回的子树即下方 Scaffold 分支</text>
 
   <!-- ===== connectors (drawn first, under boxes) ===== -->
   <g stroke="#78909c" stroke-width="1.6" fill="none" marker-end="url(#arw)">
@@ -132,4 +132,27 @@
   <rect x="560" y="846" width="22" height="18" rx="4" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="2" stroke-dasharray="6 4"/>
   <text x="592" y="861" font-size="12.5" fill="#37474f">State&lt;T&gt; 对象：不是 Widget，虚线框表示（它才是真正改状态的地方）</text>
   <text x="60" y="880" font-size="12" fill="#78909c">注：MaterialApp/Scaffold/AppBar 的 Stateful 是框架内部实现；本图只展开本文件手写的 widget，框架内部的 Navigator / Overlay 等子树未画出。</text>
+
+  <!-- ===== widgets added in 改造一 / 改造二 ===== -->
+  <text x="40" y="930" font-size="16" font-weight="bold" fill="#263238">改造一 / 改造二新增的 Widget（挂在上述主干节点下，均为 StatelessWidget）</text>
+  <text x="40" y="952" font-size="12.5" fill="#607d8b">AppBar.actions / AppBar.flexibleSpace / body 的 Column 第 3 个子节点；主干各节点的类型判定不变。</text>
+
+  <g>
+    <rect x="40" y="970" width="380" height="64" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+    <text x="230" y="996" font-size="13.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">IconButton(Icons.tune)</text>
+    <text x="230" y="1016" font-size="11.5" fill="#2e7d32" text-anchor="middle">StatelessWidget — AppBar.actions，onPressed: _chooseStep</text>
+  </g>
+  <g>
+    <rect x="450" y="970" width="420" height="64" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+    <text x="660" y="996" font-size="13.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">Image.asset('assets/images/appbar_bg.jpg')</text>
+    <text x="660" y="1016" font-size="11.5" fill="#2e7d32" text-anchor="middle">StatelessWidget — AppBar.flexibleSpace（BoxFit.cover）</text>
+  </g>
+  <g>
+    <rect x="900" y="970" width="340" height="64" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+    <text x="1070" y="996" font-size="13.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">Text('步长：+$_step / 次')</text>
+    <text x="1070" y="1016" font-size="11.5" fill="#2e7d32" text-anchor="middle">StatelessWidget — body Column 新增</text>
+  </g>
+
+  <text x="40" y="1078" font-size="12" fill="#78909c">注：showModalBottomSheet 弹出的是新路由（挂在 Navigator/Overlay 下），其中的 SafeArea/Column/ListTile/Text/Icon 均不属于本页常驻树，弹层关闭即销毁。</text>
+  <text x="40" y="1100" font-size="12" fill="#78909c">故上述新增节点都没有 State；_step 仍由 _MyHomePageState 持有，通过 setState 驱动重建。</text>
 </svg>
